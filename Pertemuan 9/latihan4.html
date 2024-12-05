@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulasi DOM Dengan jQuery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        div {
+            margin-bottom: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        .viewHASIL {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>Hitung Luas Persegi</h3>
+        <div>
+            Nilai Panjang <input type="number" id="txPJ">
+        </div>
+        <div>
+            Nilai Lebar <input type="number" id="txLB">
+        </div>
+        <div>
+            <span class="viewHASIL"></span>
+        </div>
+        <div>
+            <button id="cmdHITUNG">Hitung Luas</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+    $(function(){
+        $("#cmdHITUNG").on("click", function(){
+            // Ambil nilai panjang dan lebar
+            let pj = parseFloat($('#txPJ').val());
+            let lb = parseFloat($('#txLB').val());
+            
+            // Validasi input
+            if (isNaN(pj) || isNaN(lb)) {
+                $('.viewHASIL').html("Silakan masukkan angka yang valid");
+                return;
+            }
+            
+            // Hitung luas
+            let luas = pj * lb;
+            
+            // Tampilkan informasi
+            let info = "Luas Persegi<br>";
+            info += "Luas = Panjang X Lebar<br>";
+            info += "Luas = " + pj + " X " + lb + "<br>";
+            info += "Luas = " + luas;
+            
+            // Tampilkan hasil
+            $('.viewHASIL').html(info);
+        });
+    });
+    </script>
+</body>
+</html>
